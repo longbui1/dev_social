@@ -1,0 +1,15 @@
+{
+    "app": {
+        "salt": "thomtho",
+        "sharedSecret": "thomtho27",
+        "token_duration": "30d"
+    },
+    "local": {
+        "database": {
+            "index": {
+                "role": "Role",
+                "user": "users"
+            }
+        }
+    }
+}
