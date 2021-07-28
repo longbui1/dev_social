@@ -6,6 +6,11 @@ require('dotenv').config({ path: __dirname + '/.env' });
 const mongodb = require('./libs/mongodb');
 mongodb.checkConnection();
 
+//test
+app.get('/', (req, res) => {
+    res.send('HUHA');
+});
+
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,5 +21,5 @@ app.use('/role', require('./src/role'));
 app.use('/user', require('./src/user'));
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('app listen port:' + process.env.PORT || 3000);
+    console.log('app listen port:' + 3000);
 });
