@@ -1,5 +1,6 @@
 const roleService = require('./roleService');
 const roleError = require('../../lang/role.json').en;
+
 module.exports = {
     createRole: async (req, res) => {
         let { title, level } = req.body;
@@ -13,7 +14,12 @@ module.exports = {
             title,
             level,
         });
-        resp.data = data;
+
+        resp.data = {
+            title: data.title,
+            level: data.level,
+            status: data.status,
+        };
         res.json(resp);
     },
 };

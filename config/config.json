@@ -8,7 +8,7 @@
         "database": {
             "index": {
                 "role": "Role",
-                "user": "users"
+                "user": "User"
             }
         }
     }

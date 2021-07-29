@@ -1,18 +1,15 @@
 const User = require('../../models/user');
+const crud = require('../../utils/crud');
+const index = require('../../config/config.json').local.database.index.user;
 
 module.exports = {
     create: async (body) => {
-        let user = await new User({
+        let { data } = await crud.create(index, {
             ...body,
             createdAt: new Date().toISOString(),
             status: true,
         });
-        try {
-            const data = await user.save();
-            return { data };
-        } catch (error) {
-            console.log(error);
-        }
+        return { data };
     },
     getEmail: async (email) => {
         try {
