@@ -1,6 +1,8 @@
 const roleService = require('./roleService');
 const roleError = require('../../lang/role.json').en;
 
+const Role = require('../../models/role');
+
 module.exports = {
     createRole: async (req, res) => {
         let { title, level } = req.body;
@@ -21,5 +23,14 @@ module.exports = {
             status: data.status,
         };
         res.json(resp);
+    },
+    //
+    getRole: async (req, res) => {
+        try {
+            const role = await Role.findById(req.params.roleId);
+            res.json(role);
+        } catch (error) {
+            console.log(error);
+        }
     },
 };
