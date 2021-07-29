@@ -24,7 +24,7 @@ module.exports = {
         };
         res.json(resp);
     },
-    //
+    // get
     getRole: async (req, res) => {
         try {
             const role = await Role.findById(req.params.roleId);
