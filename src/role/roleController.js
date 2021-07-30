@@ -33,4 +33,18 @@ module.exports = {
             console.log(error);
         }
     },
+    getListRole: async (req, res) => {
+        let { title, status, limit, offset } = req.query;
+        let resp = { status: true, data: {} };
+
+        let { total, list } = await roleService.getAll({
+            title,
+            status,
+            limit,
+            offset,
+        });
+
+        resp.data = { total, list };
+        res.status(200).json(resp);
+    },
 };

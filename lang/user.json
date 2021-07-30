@@ -18,6 +18,9 @@
             },
             "role_not_exist": {
                 "massage": "role not exist"
+            },
+            "register_info_not_found": {
+                "massage": "email or password or passwordConfirm is null"
             }
         }
     }

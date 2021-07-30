@@ -19,4 +19,7 @@ module.exports = {
             console.log(error);
         }
     },
+    // getAll:async(){
+        
+    // }
 };
