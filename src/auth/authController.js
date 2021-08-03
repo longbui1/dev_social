@@ -49,10 +49,10 @@ module.exports = {
         res.status(200).json(resp);
     },
     register: async (req, res) => {
-        let { email, password, passwordConfirm } = req.body;
+        let { fullName,email, password, passwordConfirm } = req.body;
         let resp = { status: true, data: {} };
         //check null
-        if (!email || !password || !passwordConfirm) {
+        if (!fullName||!email || !password || !passwordConfirm) {
             return res.status(403).json({
                 status: false,
                 data: authError.info_not_found,
@@ -81,6 +81,7 @@ module.exports = {
         // }
         password = encryptString(password);
         let { data } = await userService.create({
+            fullName,
             email,
             password,
             // roleId: role[2].id,
