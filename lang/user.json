@@ -5,23 +5,6 @@
         },
         "password_not_match_passwordConfirm": {
             "massage": "password not match passwordConfirm"
-        },
-        "auth": {
-            "info_not_found": {
-                "massage": "email or password is null"
-            },
-            "email_not_exist": {
-                "massage": "email not exist"
-            },
-            "wrong_password": {
-                "massage": "Wrong password"
-            },
-            "role_not_exist": {
-                "massage": "role not exist"
-            },
-            "register_info_not_found": {
-                "massage": "email or password or passwordConfirm is null"
-            }
         }
     }
 }

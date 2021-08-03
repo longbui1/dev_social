@@ -19,7 +19,15 @@ module.exports = {
             console.log(error);
         }
     },
-    // getAll:async(){
-        
-    // }
+    update: async (id, body) => {
+        let result = await crud.update(index, id, {
+          ...body,
+          updatedAt: new Date().toISOString(),
+        });
+        return result;
+      },
+      getOne: async (id) => {
+        let role = await crud.getDetail(index, id);
+        return role;
+      },
 };

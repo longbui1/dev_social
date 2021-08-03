@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 //CryptoJS
 exports.encryptString = (string) => {
-    CryptoJS.AES.encrypt(string, salt).toString();
+   return CryptoJS.AES.encrypt(string, salt).toString();
 };
 
 exports.decryptString = (string) => {

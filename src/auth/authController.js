@@ -1,9 +1,10 @@
-// const tryCatch = require('../../utils/tryCatch');
+
 const userService = require('../user/userService');
 const roleService = require('../role/roleService');
 // const authError = require('../../lang/user.json').en.auth;
 const authError = require('../../lang/auth.json').en;
-const { decryptString, issueToken } = require('../../utils/auth');
+const {encryptString, decryptString, issueToken } = require('../../utils/auth');
+const { sendMail } = require("../../utils/sendMail");
 
 module.exports = {
     login: async (req, res) => {
@@ -30,7 +31,7 @@ module.exports = {
                 .json({ status: false, data: authError.wrong_password });
         }
         // check roleId
-        let { role } = await roleService.getRoleId(user.roleId);
+        let  role  = await roleService.getOne(user.roleId);
         if (!role) {
             return res
                 .status(403)
@@ -71,24 +72,41 @@ module.exports = {
                  .status(403)
                  .json({ status: false, data: authError.email_exist });
          }
-        //  let { role } = await roleService.getRoleId(user.roleId);
+        //  console.log(user.roleId)
+        //  let  role  = await roleService.getOne(user.roleId);
         // if (!role) {
         //     return res
         //         .status(403)
         //         .json({ status: false, data: authError.role_not_exist });
         // }
-
+        password = encryptString(password);
         let { data } = await userService.create({
             email,
             password,
-            // roleId: role[0].id,
+            // roleId: role[2].id,
             verifyAccount: false,
             status: true,
           });
+        let timeActive = (Date.now() + 600000).toString();
+        let code = Math.floor(100000 + Math.random() * 900000);
+        let tokenActive = encryptString(
+        JSON.stringify({ code, expired: timeActive, userId:data.id })
+        );
+        // let urlActive =`${data.id}/TokenActive/${tokenActive}`;
+        
+        // // send email
+        // sendMail(
+        //     email,
+        //     authError.subject_mail_active_account.message,
+        //     urlActive,
+        //     code
+        //   );
+
           resp.data = {
-            // checkEmail: errUser.register_success,
+            checkEmail: authError.register_success,
             userId: data.id,
-            // tokenActive: tokenActive,
+            tokenActive: tokenActive,
+            code
           };
           res.json(resp);
 

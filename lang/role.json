@@ -2,6 +2,12 @@
     "en": {
         "info_not_found": {
             "massage": "title or level is none"
+        },
+        "info_update_not_found": {
+            "massage": "title or level or status is none"
+        },
+        "role_not_found": {
+            "massage": "role not found"
         }
     }
 }
