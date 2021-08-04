@@ -5,6 +5,7 @@ const userError = require('../../lang/user.json').en;
 const CryptoJS = require('crypto-js');
 const { salt } = require('../../config/config.json').app;
 const { decryptString,encryptString } = require('../../utils/auth');
+const User=require('../../models/user')
 
 module.exports = {
     createUser: async (req, res) => {
@@ -130,4 +131,12 @@ module.exports = {
         };
         res.status(200).json(resp);
       },
+      deleteUser:async(req,res)=>{
+        try {
+          const removeUser=await User.deleteOne({_id:req.params.id});
+          res.json(removeUser)
+        } catch (error) {
+          console.log(error)
+        }
+      }
 };
